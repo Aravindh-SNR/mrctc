@@ -1,0 +1,32 @@
+[
+    {
+        "name": "chennai express",
+        "stations": ["Mumbai", "Chennai"],
+        "price": 1000
+    },
+    {
+        "name": "andaman express",
+        "stations": ["Chennai", "New Delhi"],
+        "price": 2500
+    },
+    {
+        "name": "howrah mail",
+        "stations": ["Chennai", "Kolkata"],
+        "price": 1000
+    },
+    {
+        "name": "swaraj express",
+        "stations": ["New Delhi", "Mumbai"],
+        "price": 1000
+    },
+    {
+        "name": "rajdhani express",
+        "stations": ["Kolkata", "New Delhi"],
+        "price": 2000
+    },
+    {
+        "name": "kolkata mail",
+        "stations": ["Mumbai", "Kolkata"],
+        "price": 1500
+    }
+]
