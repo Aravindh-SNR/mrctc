@@ -5,12 +5,27 @@
         "price": 1000
     },
     {
+        "name": "chennai mail",
+        "stations": ["Mumbai", "Chennai"],
+        "price": 900
+    },
+    {
         "name": "andaman express",
         "stations": ["Chennai", "New Delhi"],
         "price": 2500
     },
     {
+        "name": "tamil nadu express",
+        "stations": ["Chennai", "New Delhi"],
+        "price": 2000
+    },
+    {
         "name": "howrah mail",
+        "stations": ["Chennai", "Kolkata"],
+        "price": 1000
+    },
+    {
+        "name": "coromandel express",
         "stations": ["Chennai", "Kolkata"],
         "price": 1000
     },
@@ -20,7 +35,17 @@
         "price": 1000
     },
     {
+        "name": "paschim express",
+        "stations": ["New Delhi", "Mumbai"],
+        "price": 1500
+    },
+    {
         "name": "rajdhani express",
+        "stations": ["Kolkata", "New Delhi"],
+        "price": 2000
+    },
+    {
+        "name": "poorva express",
         "stations": ["Kolkata", "New Delhi"],
         "price": 2000
     },
@@ -28,5 +53,10 @@
         "name": "kolkata mail",
         "stations": ["Mumbai", "Kolkata"],
         "price": 1500
+    },
+    {
+        "name": "gitanjali express",
+        "stations": ["Mumbai", "Kolkata"],
+        "price": 1250
     }
 ]

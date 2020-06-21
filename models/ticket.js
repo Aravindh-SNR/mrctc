@@ -1,4 +1,4 @@
-// Schema definition for ticket purchased
+// Schema definition for ticket/transaction
 
 const mongoose = require('mongoose');
 
@@ -11,9 +11,13 @@ const ticketSchema = new mongoose.Schema({
         type: mongoose.Types.ObjectId,
         ref: 'Train'
     },
-    amountPaid: {
+    totalAmount: {
         type: Number,
         required: true
+    },
+    paid: {
+        type: Boolean,
+        default: false
     },
     passengers: [
         {

@@ -18,8 +18,8 @@ const hash = async password => {
 
 const compare = async (password, passwordHash) => {
     try {
-        const isValid = await bcrypt.compare(password, passwordHash);
-        return isValid;
+        const match = await bcrypt.compare(password, passwordHash);
+        return match;
     } catch (error) {
         logger.error('Error comparing password:', error.message);
         return false;

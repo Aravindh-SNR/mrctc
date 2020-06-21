@@ -1,3 +1,5 @@
+// Validate fields in incoming http requests
+
 const Joi = require('@hapi/joi');
 const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
@@ -9,51 +11,50 @@ const validateUser = {
     userType: Joi.string().required().valid('customer', 'admin')
 };
 
-// Common fields for both adding passengers and buying tickets
-
-const validatePassengers = {
-    passengers: Joi.array().items(Joi.object({
-        name: Joi.string().required().trim().min(1),
-        gender: Joi.string().required().valid('M', 'F'),
-        age: Joi.number().required()
-    })).required()
-};
-
-// Validate request body for adding a train
+// Add a train
 
 const addTrain = Joi.object({
     name: Joi.string().required().trim().min(1),
-    stations: Joi.array().items(Joi.string().trim().min(1)).required().length(2).unique(),
-    price: Joi.number().required()
+    stations: Joi.array().items(
+        Joi.string().trim().min(1)
+    ).required().length(2).unique(),
+    price: Joi.number().required().min(1)
 });
 
-// Validate request body for setting the price of a train ticket
+// Set the price of a train ticket
 
 const setPrice = Joi.object({
-    name: Joi.string().required().trim().min(1),
-    price: Joi.number().required()
+    price: Joi.number().required().min(1)
 });
 
-// Validate request body for registration
+// User Registration
 
 const register = Joi.object({
     name: Joi.string().required().trim().min(1),
     ...validateUser
 });
 
-// Validate request body for login
+// User Login
 
 const login = Joi.object(validateUser);
 
-// Validate request body for adding passengers
+// Add ticket to cart
 
-const addPassengers = Joi.object(validatePassengers);
-
-// Validate request body for ticket purchase
-
-const buyTicket = Joi.object({
+const addTicketToCart = Joi.object({
     trainId: Joi.string().required(),
-    ...validatePassengers
+    passengers: Joi.array().items(
+        Joi.object({
+            name: Joi.string().required().trim().min(1),
+            gender: Joi.string().required().valid('M', 'F'),
+            age: Joi.number().required().min(0)
+        })
+    ).required().min(1)
 });
 
-module.exports = { addTrain, setPrice, register, login, addPassengers, buyTicket };
+// Validate request params for setting the price of a train ticket, and buying/cancelling a ticket
+
+const idParam = Joi.object({
+    id: Joi.string().required()
+});
+
+module.exports = { addTrain, setPrice, register, login, addTicketToCart, idParam };

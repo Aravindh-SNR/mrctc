@@ -1,9 +1,9 @@
-// Schema definition for Customer
+// Schema definition for User
 
 const mongoose = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
 
-const customerSchema = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true
@@ -19,14 +19,7 @@ const customerSchema = new mongoose.Schema({
     userType: {
         type: String,
         required: true
-    },
-    passengers: [
-        {
-            name: { type: String },
-            gender: { type: String },
-            age: { type: Number }
-        }
-    ]
+    }
 }, {
     toJSON: {
         transform: (document, returnedObject) => {
@@ -38,7 +31,7 @@ const customerSchema = new mongoose.Schema({
     }
 });
 
-// Ensure email of customer is unique
+// Ensure email is unique
 customerSchema.plugin(uniqueValidator, { message: 'The email {VALUE} already exists.' });
 
-module.exports = mongoose.model('Customer', customerSchema);
+module.exports = mongoose.model('User', userSchema);
