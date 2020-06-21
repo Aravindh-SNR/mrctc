@@ -19,6 +19,8 @@ mongoose.connect(MONGODB_URI, {
         logger.error('MongoDB error:', error.message);
     });
 
+// Insert data into DB
+
 mongoose.connection.on('open', async () => {
     for (const train of trainData) {
         const newTrain = new Train(train);
