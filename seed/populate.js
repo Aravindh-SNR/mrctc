@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { MONGODB_URI } = require('./utils/config');
+const { MONGODB_URI } = require('../utils/config');
 const Train = require('../models/train');
 const trainData = require('./data.json');
 const logger = require('../utils/logger');
