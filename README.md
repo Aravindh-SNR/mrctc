@@ -9,9 +9,9 @@ To run the server locally,
 5. Seed the database - npm run seed
 6. Start the server - npm run dev
 
-PORT=3001
-MONGODB_DEV_URI=mongodb://localhost/mrctc
-TOKEN_SECRET=''
+PORT=3001   
+MONGODB_DEV_URI=mongodb://localhost/mrctc   
+TOKEN_SECRET=''   
 ADMIN_PASSCODE=''
 
 To register as an admin from the front-end, use the same admin passcode value that you add here.
