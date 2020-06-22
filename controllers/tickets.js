@@ -51,7 +51,8 @@ const addTicketToCart = async (request, response) => {
 // Buy ticket, i.e. update paid to true
 
 const buyTicket = async (request, response) => {
-    const paidTicket = await Ticket.findByIdAndUpdate(request.params.id, { paid: true }, { new: true });
+    const paidTicket = await Ticket.findByIdAndUpdate(request.params.id, { paid: true }, { new: true })
+        .populate('trainId', { name : 1 });
     if (!paidTicket) {
         return response.status(400).json({ error: 'Ticket with the given id does not exist' });
     }
