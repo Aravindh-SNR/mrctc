@@ -10,7 +10,8 @@ const userSchema = new mongoose.Schema({
     },
     email: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     passwordHash: {
         type: String,
@@ -32,6 +33,6 @@ const userSchema = new mongoose.Schema({
 });
 
 // Ensure email is unique
-customerSchema.plugin(uniqueValidator, { message: 'The email {VALUE} already exists.' });
+userSchema.plugin(uniqueValidator, { message: '{VALUE} already exists.' });
 
 module.exports = mongoose.model('User', userSchema);

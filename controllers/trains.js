@@ -20,6 +20,9 @@ const addTrain = async (request, response) => {
 const setPrice = async (request, response) => {
     const { price } = request.body;
     const updatedTrain = await Train.findByIdAndUpdate(request.params.id, { price }, { new: true });
+    if (!updatedTrain) {
+        return response.status(400).json({ error: 'Train with the given id does not exist' });
+    }
     return response.json(updatedTrain);
 };
 

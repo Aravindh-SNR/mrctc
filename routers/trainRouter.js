@@ -1,5 +1,5 @@
 const trainRouter = require('express').Router();
-const validator = require('express-joi-validation').createValidator({});
+const validator = require('express-joi-validation').createValidator({ passError: true });
 const validationSchemas = require('../utils/validation');
 const { authenticateAdmin } = require('../utils/middleware');
 const trainController = require('../controllers/trains');

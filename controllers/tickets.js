@@ -2,6 +2,15 @@ const Ticket = require('../models/ticket');
 const Train = require('../models/train');
 const pricing = require('../seed/pricing.json');
 
+// Get history of bookings
+
+const getBookingHistory = async (request, response) => {
+    const tickets = await Ticket.find({ customerId: request.decodedToken.id })
+        .populate('trainId', { name : 1 })
+        .sort({ _id: -1 });
+    return response.json(tickets);
+};
+
 // Add ticket to cart
 
 const addTicketToCart = async (request, response) => {
@@ -43,6 +52,9 @@ const addTicketToCart = async (request, response) => {
 
 const buyTicket = async (request, response) => {
     const paidTicket = await Ticket.findByIdAndUpdate(request.params.id, { paid: true }, { new: true });
+    if (!paidTicket) {
+        return response.status(400).json({ error: 'Ticket with the given id does not exist' });
+    }
     return response.json(paidTicket);
 };
 
@@ -53,4 +65,4 @@ const cancelTicket = async (request, response) => {
     return response.status(204).end();
 };
 
-module.exports = { addTicketToCart, buyTicket, cancelTicket };
+module.exports = { getBookingHistory, addTicketToCart, buyTicket, cancelTicket };

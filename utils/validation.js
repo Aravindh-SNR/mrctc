@@ -7,8 +7,7 @@ const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
 const validateUser = {
     email: Joi.string().required().trim().regex(emailRegex),
-    password: Joi.string().required().trim().min(1),
-    userType: Joi.string().required().valid('customer', 'admin')
+    password: Joi.string().required().trim().min(1)
 };
 
 // Add a train
@@ -31,7 +30,9 @@ const setPrice = Joi.object({
 
 const register = Joi.object({
     name: Joi.string().required().trim().min(1),
-    ...validateUser
+    ...validateUser,
+    userType: Joi.string().valid('customer', 'admin'),
+    passcode: Joi.string().optional().allow('')
 });
 
 // User Login

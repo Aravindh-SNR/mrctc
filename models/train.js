@@ -25,6 +25,6 @@ const trainSchema = new mongoose.Schema({
 });
 
 // Ensure train name is unique
-trainSchema.plugin(uniqueValidator, { message: 'Train {VALUE} already exists in the database.' });
+trainSchema.plugin(uniqueValidator, { message: '{VALUE} already exists in the database.' });
 
 module.exports = mongoose.model('Train', trainSchema);

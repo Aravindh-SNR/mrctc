@@ -1,5 +1,6 @@
 const authentication = require('./authentication');
 const User = require('../models/user');
+const logger = require('./logger');
 
 // Extract token from request headers and attach it to the request object
 
@@ -25,7 +26,7 @@ const authenticateCustomer = async (request, response, next) => {
 
 // Verify that token belongs to a user of type 'admin'
 
-const authenticateAdmin = (request, response, next) => {
+const authenticateAdmin = async (request, response, next) => {
     const decodedToken = authentication.verify(request.token);
     const user = await User.findById(decodedToken.id);
     if (!(user && user.userType === 'admin')) {
@@ -39,7 +40,9 @@ const unknownEndpoint = (request, response) => {
 };
 
 const handleErrors = (error, request, response, next) => {
-    if (error.name === 'ValidationError') {
+    if (error.name === 'CastError' && error.kind === 'ObjectId') {
+        return response.status(400).json({ error: 'Incorrect id format' });
+    } else if (error.name === 'ValidationError') {
         return response.status(400).json({ error: error.message });
     } else if (error.name === 'JsonWebTokenError') {
         return response.status(401).json({ error: 'Invalid token' });

@@ -22,18 +22,22 @@ const register = async (request, response) => {
     // Save new user in DB
 
     const user = new User(request.body);
-    await user.save();
-    return response.status(201).end();
+    const newUser = await user.save();
+    return response.status(201).json(newUser);
 };
 
 // Log user in
 
 const login = async (request, response) => {
+    const { email, password } = request.body;
     
     // Verify password
 
-    const { email, password } = request.body;
     const user = await User.findOne({ email });
+    if (!user) {
+        return response.status(401).json({ error: 'Invalid email or password.' });
+    }
+
     const match = await crypto.compare(password, user.passwordHash);
     if (!match) {
         return response.status(401).json({ error: 'Invalid email or password.' });
@@ -42,7 +46,7 @@ const login = async (request, response) => {
     // Generate access token
 
     const token = authentication.sign({ id: user.id });
-    return response.json({ token, name: user.name });
+    return response.json({ token, user });
 };
 
 module.exports = { register, login };
