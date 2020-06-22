@@ -3,7 +3,7 @@ const Train = require('../models/train');
 // Get list of trains
 
 const getTrains = async (request, response) => {
-    const trains = await Train.find();
+    const trains = await Train.find().sort({ _id: -1 });
     return response.json(trains);
 };
 
