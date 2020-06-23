@@ -1,7 +1,7 @@
 {
   "name": "mrctc-backend",
   "version": "1.0.0",
-  "description": "A dummy rail e-ticketing app for Metropolitan cities of India",
+  "description": "A sample rail e-ticketing app for Metropolitan cities of India",
   "main": "index.js",
   "scripts": {
     "start": "cross-env NODE_ENV=production node index.js",

@@ -1,4 +1,4 @@
-Back end of MRCTC - a dummy rail e-ticketing app for Metropolitan cities of India, built using Node, Express and MongoDB.
+Back end of MRCTC - a sample rail e-ticketing app for Metropolitan cities of India, built using Node, Express and MongoDB.
 
 To run the server locally:
 
